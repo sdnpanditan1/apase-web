@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absensi Guru & Staf - SDN Panditan I</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1e293b 100%);
+            --glass-bg: rgba(30, 41, 59, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-color: #facc15;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { min-height: 100vh; background: var(--bg-gradient); color: var(--text-main); padding: 40px 20px; padding-bottom: 120px; }
+        .container { max-width: 1300px; margin: auto; }
+        
+        .header {
+            display: flex; align-items: center; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border); padding: 24px 35px; border-radius: 24px; margin-bottom: 40px; gap: 28px;
+            position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .header::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent-color), transparent); }
+        .header .logo { width: 75px; height: 75px; object-fit: contain; }
+        .header h1 { font-size: 22px; font-weight: 800; line-height: 1.4; background: linear-gradient(120deg, #ffffff, #cbd5e1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .main-content { display: grid; grid-template-columns: 1fr 1.7fr; gap: 35px; }
+        .info-panel { background: var(--glass-bg); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 28px; padding: 40px 30px; text-align: center; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); height: fit-content; }
+        .faceprint-wrapper { width: 100%; max-width: 240px; margin: 0 auto 30px auto; }
+        .faceprint-img { width: 100%; height: auto; border-radius: 20px; filter: drop-shadow(0px 15px 20px rgba(0,0,0,0.5)); }
+        .info-title { font-size: 20px; font-weight: 700; color: var(--accent-color); margin-bottom: 15px; }
+        .info-text { font-size: 13.5px; color: var(--text-muted); line-height: 1.75; text-align: justify; }
+
+        .folder-panel { background: var(--glass-bg); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 28px; padding: 35px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); }
+        .folder-panel-title { font-size: 20px; font-weight: 700; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 15px; display: flex; align-items: center; gap: 12px; }
+        .folder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 20px; }
+
+        .folder-card { background: rgba(15, 23, 42, 0.45); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 25px 15px; text-align: center; cursor: pointer; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .folder-card:hover { transform: translateY(-5px); background: rgba(30, 41, 59, 0.7); border-color: rgba(250, 204, 21, 0.4); }
+        .folder-icon-wrapper { margin-bottom: 15px; }
+        .folder-icon { font-size: 52px; color: var(--accent-color); }
+        .folder-name { font-size: 13.5px; font-weight: 700; color: #f1f5f9; margin-bottom: 10px; }
+
+        .status-badge { font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 100px; text-transform: uppercase; }
+        .badge-available { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.2); }
+        .badge-empty { background: rgba(148, 163, 184, 0.1); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.2); }
+        .folder-card.disabled { opacity: 0.5; }
+        .folder-card.disabled .folder-icon { color: #64748b; }
+
+        .back-btn { position: fixed; bottom: 35px; right: 35px; padding: 14px 30px; background: var(--accent-color); color: #0f172a; border: none; border-radius: 16px; font-weight: 700; font-size: 14px; cursor: pointer; box-shadow: 0 10px 25px rgba(250, 204, 21, 0.2); display: flex; align-items: center; gap: 10px; z-index: 99; transition: all 0.3s ease; }
+        .back-btn:hover { background: #eab308; transform: translateY(-3px); }
+
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px); padding: 20px; }
+        .modal-content { background: #111827; border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 24px; max-width: 450px; margin: 25vh auto auto; padding: 40px 30px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
+        .modal-icon { font-size: 55px; color: #ef4444; margin-bottom: 20px; }
+        .modal-text { font-size: 14.5px; color: #d1d5db; line-height: 1.6; margin-bottom: 30px; }
+        .modal-close-btn { width: 100%; padding: 12px; background: #ef4444; color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; }
+
+        /* LOADING SPINNER */
+        .loading-state { grid-column: 1/-1; text-align: center; padding: 40px; color: var(--accent-color); }
+        .loading-state i { font-size: 35px; margin-bottom: 15px; }
+
+        @media (max-width: 992px) { .main-content { grid-template-columns: 1fr; gap: 30px; } .header { padding: 20px; gap: 15px; } .header h1 { font-size: 17px; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <img src="pages/img/logo1.png" alt="Logo" class="logo" onerror="this.src='https://via.placeholder.com/80?text=LOGO'">
+        <h1>ABSENSI GURU & STAF<br>SDN PNDITAN I KEC. LUMBANG KAB. PASURUAN</h1>
+    </div>
+
+    <div class="main-content">
+        <div class="info-panel">
+            <div class="faceprint-wrapper">
+                <img src="gbr5.png" alt="Faceprint" class="faceprint-img" onerror="this.src='https://via.placeholder.com/260x200?text=Faceprint'">
+            </div>
+            <div class="info-title">Kedisiplinan Nilai Utama</div>
+            <p class="info-text">
+                Ketepatan waktu kehadiran adalah cerminan dari dedikasi dan profesionalisme kita sebagai pendidik generasi penerus bangsa. Mari pertahankan kedisiplinan absensi harian dengan menggunakan fasilitas Faceprint tepat waktu demi kelancaran administrasi sekolah serta pelayanan pendidikan terbaik di SDN Panditan I.
+            </p>
+        </div>
+
+        <div class="folder-panel">
+            <div class="folder-panel-title">
+                <i class="fas fa-folder-open" style="color: var(--accent-color);"></i> Arsip Digital Pengumpulan Absensi
+            </div>
+            <div id="folderContainer" class="folder-grid">
+                <div class="loading-state" id="loadingState">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                    <p>Menghubungkan ke Server Google Sheets...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class="back-btn" onclick="goBack()">
+    <i class="fas fa-arrow-left"></i> Kembali
+</button>
+
+<div class="modal" id="warningModal">
+    <div class="modal-content">
+        <i class="fas fa-circle-exclamation modal-icon"></i>
+        <p class="modal-text">
+            Maaf, folder pengumpulan absensi belum tersedia untuk bulan ini. Silakan hubungi Kepala Sekolah atau Admin Sistem. Terima kasih.
+        </p>
+        <button class="modal-close-btn" onclick="closeWarning()">Tutup Dialog</button>
+    </div>
+</div>
+
+<script>
+    // MENGGUNAKAN REDIRECT VALID DENGAN PARAMETER BERSIH
+    const ABSENSI_API = "https://script.google.com/macros/s/AKfycbybmiPlUxgYH1VAec7SMg3iOp9l7IswRbysU69jP0IdQn7TVAiv_0pUBDyD5fXAaUYL/exec?action=getAllAbsensi";
+
+    function goBack() { window.location.href = "https://sugeng1104.github.io/apase-web/dashboard.html"; }
+    function showWarning() { document.getElementById("warningModal").style.display = "block"; }
+    function closeWarning() { document.getElementById("warningModal").style.display = "none"; }
+
+    function fetchAbsensiDataLive() {
+        const container = document.getElementById("folderContainer");
+
+        // METODE JAVASCRIPT KLASIK BERBASIS PROTOKOL KHUSUS UNTUK MENEMBUS SISTEM GOOGLE SPREADSHEET
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", ABSENSI_API, true);
+        
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200 || xhr.status === 302) {
+                    try {
+                        const result = JSON.parse(xhr.responseText);
+                        if (result && result.status === "success") {
+                            renderFolderGrid(result.data);
+                        } else {
+                            showErrorMessage("Gagal membaca isi data: " + (result ? result.message : 'Respons Kosong'));
+                        }
+                    } catch (e) {
+                        showErrorMessage("Sistem Google tidak merespons JSON. Selesaikan dengan Deploy Versi Baru di Apps Script.");
+                    }
+                } else {
+                    showErrorMessage("Koneksi terputus. Status Kode Error: " + xhr.status);
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    function showErrorMessage(msg) {
+        const container = document.getElementById("folderContainer");
+        container.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); border-radius: 15px; padding: 30px; color: #f87171;">
+                <i class="fas fa-triangle-exclamation" style="font-size: 30px; margin-bottom: 12px;"></i>
+                <p style="font-weight: 600; font-size: 14px; line-height:1.5;">${msg}</p>
+            </div>
+        `;
+    }
+
+    function renderFolderGrid(dbRows) {
+        const container = document.getElementById("folderContainer");
+        
+        const templateBulan = [
+            "JULI 2025", "AGUSTUS 2025", "SEPTEMBER 2025", "OKTOBER 2025", "NOPEMBER 2025", "DESEMBER 2025",
+            "JANUARI 2026", "FEBRUARI 2026", "MARET 2026", "APRIL 2026", "MEI 2026", "JUNI 2026"
+        ];
+
+        let html = "";
+
+        templateBulan.forEach(namaBulan => {
+            const matchData = dbRows.find(row => {
+                if (!row.bulan) return false;
+                return row.bulan.toString().toUpperCase().replace(/\s+/g, ' ').trim() === namaBulan.toUpperCase().replace(/\s+/g, ' ').trim();
+            });
+
+            const linkUrl = matchData && matchData.link ? matchData.link.toString().trim() : "";
+
+            if(linkUrl !== "" && (linkUrl.toLowerCase().indexOf("http") === 0)) {
+                html += `
+                    <div class="folder-card" onclick="window.open('${linkUrl}', '_blank')">
+                        <div class="folder-icon-wrapper"><i class="fas fa-folder-open folder-icon"></i></div>
+                        <div class="folder-name">${namaBulan}</div>
+                        <span class="status-badge badge-available">Tersedia</span>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="folder-card disabled" onclick="showWarning()">
+                        <div class="folder-icon-wrapper"><i class="fas fa-folder folder-icon"></i></div>
+                        <div class="folder-name">${namaBulan}</div>
+                        <span class="status-badge badge-empty">Belum Ada</span>
+                    </div>
+                `;
+            }
+        });
+
+        container.innerHTML = html;
+    }
+
+    window.onload = fetchAbsensiDataLive;
+</script>
+
+</body>
+</html>
