@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Profil Kepala Sekolah</title>
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+
+      min-height:100vh;
+
+      background:
+      linear-gradient(
+      135deg,
+      #052e16,
+      #166534,
+      #22c55e
+      );
+
+      overflow-x:hidden;
+
+      padding:30px;
+
+      position:relative;
+
+      color:white;
+
+    }
+
+    /* ========================= */
+    /* BACKGROUND */
+    /* ========================= */
+
+    .blur1,
+    .blur2{
+
+      position:fixed;
+
+      border-radius:50%;
+
+      filter:blur(120px);
+
+      opacity:.35;
+
+      z-index:0;
+
+    }
+
+    .blur1{
+
+      width:350px;
+      height:350px;
+
+      background:#4ade80;
+
+      top:-120px;
+      left:-120px;
+
+    }
+
+    .blur2{
+
+      width:350px;
+      height:350px;
+
+      background:#16a34a;
+
+      bottom:-120px;
+      right:-120px;
+
+    }
+
+    /* ========================= */
+    /* CONTAINER */
+    /* ========================= */
+
+    .container{
+
+      position:relative;
+
+      z-index:2;
+
+      max-width:900px;
+
+      margin:auto;
+
+    }
+
+    /* ========================= */
+    /* CARD */
+    /* ========================= */
+
+    .card{
+
+      background:
+      rgba(255,255,255,0.12);
+
+      backdrop-filter:blur(20px);
+
+      border:
+      1px solid rgba(255,255,255,0.18);
+
+      border-radius:35px;
+
+      padding:45px 35px;
+
+      box-shadow:
+      0 10px 35px rgba(0,0,0,0.25);
+
+    }
+
+    /* ========================= */
+    /* FOTO */
+    /* ========================= */
+
+    .foto-box{
+
+      text-align:center;
+
+      margin-bottom:30px;
+
+    }
+
+    .foto-box img{
+
+      width:170px;
+      height:170px;
+
+      object-fit:cover;
+
+      border-radius:50%;
+
+      border:
+      5px solid rgba(255,255,255,0.3);
+
+      background:white;
+
+      box-shadow:
+      0 10px 25px rgba(0,0,0,0.3);
+
+    }
+
+    .title{
+
+      margin-top:20px;
+
+      font-size:34px;
+
+      font-weight:700;
+
+      line-height:1.5;
+
+    }
+
+    /* ========================= */
+    /* DATA */
+    /* ========================= */
+
+    .data-container{
+
+      margin-top:40px;
+
+      display:grid;
+
+      grid-template-columns:
+      repeat(auto-fit,minmax(300px,1fr));
+
+      gap:22px;
+
+    }
+
+    .data-item{
+
+      background:
+      rgba(255,255,255,0.10);
+
+      border:
+      1px solid rgba(255,255,255,0.1);
+
+      border-radius:22px;
+
+      padding:22px;
+
+    }
+
+    .label{
+
+      font-size:14px;
+
+      opacity:.8;
+
+      margin-bottom:8px;
+
+    }
+
+    .value{
+
+      font-size:18px;
+
+      font-weight:600;
+
+      line-height:1.6;
+
+      word-break:break-word;
+
+    }
+
+    /* ========================= */
+    /* BUTTON */
+    /* ========================= */
+
+    .btn-back{
+
+      display:block;
+
+      width:100%;
+
+      margin-top:40px;
+
+      padding:16px;
+
+      border:none;
+
+      border-radius:18px;
+
+      background:white;
+
+      color:#166534;
+
+      text-decoration:none;
+
+      text-align:center;
+
+      font-size:17px;
+
+      font-weight:700;
+
+      transition:.3s;
+
+    }
+
+    .btn-back:hover{
+
+      transform:
+      translateY(-3px);
+
+      background:#dcfce7;
+
+    }
+
+    /* ========================= */
+    /* LOADING */
+    /* ========================= */
+
+    .loading{
+
+      text-align:center;
+
+      font-size:18px;
+
+      padding:40px;
+
+    }
+
+    /* ========================= */
+    /* RESPONSIVE */
+    /* ========================= */
+
+    @media(max-width:768px){
+
+      body{
+
+        padding:18px;
+
+      }
+
+      .card{
+
+        padding:35px 20px;
+
+      }
+
+      .title{
+
+        font-size:26px;
+
+      }
+
+      .foto-box img{
+
+        width:140px;
+        height:140px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+  <div class="blur1"></div>
+  <div class="blur2"></div>
+
+  <!-- CONTAINER -->
+  <div class="container">
+
+    <div class="card">
+
+      <!-- FOTO -->
+      <div class="foto-box">
+
+        <img src="assets/img/kepsek.png"
+             alt="Foto Kepala Sekolah">
+
+        <div class="title">
+
+          Profil Kepala Sekolah
+          <br>
+          SDN Panditan I
+
+        </div>
+
+      </div>
+
+      <!-- LOADING -->
+      <div class="loading"
+           id="loading">
+
+        Memuat data kepala sekolah...
+
+      </div>
+
+      <!-- DATA -->
+      <div class="data-container"
+           id="dataContainer"
+           style="display:none;">
+
+        <div class="data-item">
+
+          <div class="label">
+            Nama Kepala Sekolah
+          </div>
+
+          <div class="value"
+               id="nama">
+
+            -
+
+          </div>
+
+        </div>
+
+        <div class="data-item">
+
+          <div class="label">
+            NIP
+          </div>
+
+          <div class="value"
+               id="nip">
+
+            -
+
+          </div>
+
+        </div>
+
+        <div class="data-item">
+
+          <div class="label">
+            Pangkat / Golongan
+          </div>
+
+          <div class="value"
+               id="pangkat">
+
+            -
+
+          </div>
+
+        </div>
+
+        <div class="data-item">
+
+          <div class="label">
+            Alamat
+          </div>
+
+          <div class="value"
+               id="alamat">
+
+            -
+
+          </div>
+
+        </div>
+
+        <div class="data-item">
+
+          <div class="label">
+            Email
+          </div>
+
+          <div class="value"
+               id="email">
+
+            -
+
+          </div>
+
+        </div>
+
+        <div class="data-item">
+
+          <div class="label">
+            No. HP
+          </div>
+
+          <div class="value"
+               id="hp">
+
+            -
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- BUTTON -->
+      <a href="https://sugeng1104.github.io/apase-web/dashboard.html"
+         class="btn-back">
+
+        ← Kembali ke Dashboard
+
+      </a>
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+
+    // =====================================
+    // URL APPS SCRIPT
+    // =====================================
+
+    const API_URL =
+    "https://script.google.com/macros/s/AKfycbwo6yEkwQebM4ImabaLk7IWZx7z8l1vGkVOzJw1SlhgW8kwbL7_THG4LzmZfyvBemoo/exec";
+
+
+    // =====================================
+    // LOAD DATA
+    // =====================================
+
+    async function loadData(){
+
+      try{
+
+        const response =
+        await fetch(
+          `${API_URL}?action=getKepsek`
+        );
+
+        const result =
+        await response.json();
+
+        document
+        .getElementById("loading")
+        .style.display = "none";
+
+        if(
+          result.status === "success" &&
+          result.data
+        ){
+
+          const data =
+          result.data;
+
+          document
+          .getElementById("dataContainer")
+          .style.display = "grid";
+
+          document
+          .getElementById("nama")
+          .innerText =
+          data.nama || "-";
+
+          document
+          .getElementById("nip")
+          .innerText =
+          data.nip || "-";
+
+          document
+          .getElementById("pangkat")
+          .innerText =
+          data.pangkat || "-";
+
+          document
+          .getElementById("alamat")
+          .innerText =
+          data.alamat || "-";
+
+          document
+          .getElementById("email")
+          .innerText =
+          data.email || "-";
+
+          document
+          .getElementById("hp")
+          .innerText =
+          data.hp || "-";
+
+        }
+
+        else{
+
+          document
+          .getElementById("loading")
+          .innerText =
+          "Data kepala sekolah tidak ditemukan";
+
+        }
+
+      }
+
+      catch(error){
+
+        document
+        .getElementById("loading")
+        .innerText =
+        "Gagal memuat data";
+
+        console.error(error);
+
+      }
+
+    }
+
+    loadData();
+
+  </script>
+
+</body>
+</html>
