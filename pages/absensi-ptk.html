@@ -312,10 +312,10 @@
                 element.src = "img/" + subPath;
                 element.onerror = function() {
                     // Percobaan 3: Paksa ambil dari root absolut repositori github
-                    element.src = "https://sugeng1104.github.io/apase-web/pages/img/" + subPath;
+                    element.src = "https://sdnpanditan1.github.io/apase-web/dashboard.html/" + subPath;
                     element.onerror = function() {
                         // Percobaan 4: Alternatif lokasi root sekunder
-                        element.src = "https://sugeng1104.github.io/apase-web/img/" + subPath;
+                        element.src = "https://sdnpanditan1.github.io/apase-web/img/" + subPath;
                         element.onerror = function() {
                             // Jika semua gagal, tampilkan placeholder agar tidak kosong berantakan
                             element.src = "https://via.placeholder.com/150?text=" + subPath;
