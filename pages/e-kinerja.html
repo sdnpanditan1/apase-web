@@ -42,11 +42,12 @@
                         <p class="text-indigo-100 mt-2 text-sm leading-relaxed">Akses langsung layanan e-Kinerja BKN untuk klaim Angka Kredit (AK) dan pemantauan SKP berkala.</p>
                     </div>
                     <div class="mt-8 flex justify-center transform group-hover:scale-105 transition-transform duration-500">
-                        <img src="assets/img/ekinerja.png" alt="E-Kinerja Logo" class="h-44 object-contain drop-shadow-2xl rounded-2xl">
+                        <img src="pages/img/ekinerja.png" alt="E-Kinerja Logo" class="h-44 object-contain drop-shadow-2xl rounded-2xl">
                     </div>
                 </div>
 
                 <div class="lg:col-span-2 flex flex-col justify-between space-y-8">
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         
                         <a href="https://asndigital.bkn.go.id/" target="_blank" class="btn-timbul bg-white border border-slate-200/80 p-6 rounded-2xl shadow-xs flex flex-col justify-between items-start text-left cursor-pointer group decoration-transparent">
@@ -169,7 +170,7 @@
         const btnMainAction = document.getElementById('btnMainAction');
         const tahunAjaran = document.getElementById('tahunAjaran').innerText;
 
-        // Inisialisasi Teks Dinamis
+        // Inisialisasi Teks Dinamis saat halaman dimuat
         document.querySelectorAll('.nama-user-placeholder').forEach(el => el.innerText = currentUser.nama);
         document.querySelectorAll('.tahun-placeholder').forEach(el => el.innerText = tahunAjaran);
 
@@ -179,6 +180,7 @@
         function openWarningModal() { warningModal.classList.remove('hidden'); }
         function closeWarningModal() { warningModal.classList.add('hidden'); }
 
+        // Fungsi parsing query pencarian terstruktur di Google Drive
         function alihkanKeSubFolder(linkInduk, tipe) {
             if (tipe === "induk") {
                 window.open(linkInduk, '_blank');
@@ -195,6 +197,7 @@
             }
         }
 
+        // Pengecekan database folder via JSONP Callback (Menghindari CORS)
         function handleUnggahButton(tipe = "induk") {
             targetFolderType = tipe; 
 
@@ -242,6 +245,7 @@
             document.body.appendChild(script);
         }
 
+        // Eksekusi POST Google Apps Script untuk generate struktur arsip otomatis
         function prosesBuatFolder() {
             const btn = document.getElementById('btnCreateFolder');
             const originalText = btn.innerHTML;
@@ -262,6 +266,7 @@
                 mode: 'no-cors' 
             })
             .then(() => {
+                // Memberikan delay tunggu 4 detik agar Google Drive API selesai memproses pembuatan sub-folder
                 setTimeout(() => {
                     closeModal();
                     btn.innerHTML = originalText;
