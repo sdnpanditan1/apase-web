@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>APASE WEB</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+overflow:hidden;
+
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#1e3a8a,
+#2563eb
+);
+
+position:relative;
+
+}
+
+/* BACKGROUND */
+
+.blur1,
+.blur2{
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(100px);
+
+opacity:.45;
+
+animation:float 10s ease-in-out infinite;
+
+}
+
+.blur1{
+
+width:350px;
+height:350px;
+
+background:#60a5fa;
+
+top:-120px;
+left:-120px;
+
+}
+
+.blur2{
+
+width:350px;
+height:350px;
+
+background:#2563eb;
+
+bottom:-120px;
+right:-120px;
+
+animation-delay:2s;
+
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(20px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* CONTAINER */
+
+.container{
+
+position:relative;
+
+z-index:2;
+
+width:90%;
+
+max-width:900px;
+
+padding:60px 45px;
+
+border-radius:35px;
+
+background:
+rgba(255,255,255,0.10);
+
+backdrop-filter:blur(20px);
+
+border:
+1px solid rgba(255,255,255,0.18);
+
+box-shadow:
+0 10px 35px rgba(0,0,0,0.3);
+
+color:white;
+
+animation:fadeIn 1s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* HERO */
+
+.hero-section{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:35px;
+
+flex-wrap:wrap;
+
+margin-bottom:40px;
+
+}
+
+/* LOGO */
+
+.logo-sekolah{
+
+width:150px;
+
+height:auto;
+
+object-fit:contain;
+
+display:block;
+
+filter:
+drop-shadow(
+0 10px 25px rgba(0,0,0,0.35)
+);
+
+}
+
+/* TEXT */
+
+.hero-text{
+
+flex:1;
+
+min-width:250px;
+
+}
+
+.header{
+
+font-size:56px;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+margin-bottom:18px;
+
+line-height:1.2;
+
+}
+
+.subtext{
+
+font-size:19px;
+
+line-height:1.9;
+
+opacity:.95;
+
+}
+
+/* LOGIN BUTTON */
+
+.login-area{
+
+display:flex;
+
+justify-content:center;
+
+margin-top:15px;
+
+}
+
+.login-circle{
+
+width:150px;
+height:150px;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+linear-gradient(
+135deg,
+#22c55e,
+#15803d
+);
+
+color:white;
+
+font-size:24px;
+
+font-weight:700;
+
+text-decoration:none;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,0.25);
+
+transition:all .3s ease;
+
+}
+
+.login-circle:hover{
+
+transform:
+scale(1.08)
+translateY(-5px);
+
+box-shadow:
+0 15px 35px rgba(0,0,0,0.35);
+
+background:
+linear-gradient(
+135deg,
+#4ade80,
+#16a34a
+);
+
+}
+
+/* FOOTER */
+
+.footer{
+
+margin-top:40px;
+
+text-align:center;
+
+font-size:14px;
+
+line-height:1.8;
+
+opacity:.75;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+body{
+
+padding:15px;
+
+height:auto;
+
+min-height:100vh;
+
+}
+
+.container{
+
+padding:40px 25px;
+
+}
+
+.hero-section{
+
+flex-direction:column;
+
+text-align:center;
+
+gap:25px;
+
+}
+
+.hero-text{
+
+text-align:center;
+
+}
+
+.logo-sekolah{
+
+width:120px;
+
+}
+
+.header{
+
+font-size:38px;
+
+}
+
+.subtext{
+
+font-size:16px;
+
+}
+
+.login-circle{
+
+width:130px;
+height:130px;
+
+font-size:22px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="blur1"></div>
+<div class="blur2"></div>
+
+<!-- CONTAINER -->
+<div class="container">
+
+<!-- HERO -->
+<div class="hero-section">
+
+<!-- LOGO -->
+<img src="assets/logo/logo.png"
+     alt="Logo Sekolah"
+     class="logo-sekolah">
+
+<!-- TEXT -->
+<div class="hero-text">
+
+<div class="header">
+APASE WEB
+</div>
+
+<div class="subtext">
+
+Selamat Datang di Administrasi
+<br>
+
+SDN PANDITAN I
+Kec. Lumbang Kabupaten Pasuruan
+
+</div>
+
+</div>
+
+</div>
+
+<!-- LOGIN -->
+<div class="login-area">
+
+<a href="login.html"
+   class="login-circle">
+
+LOGIN
+
+</a>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+Aplikasi Administrasi Sekolah Berbasis Web
+<br>
+
+Modern • Responsive • Elegant
+
+</div>
+
+</div>
+
+</body>
+</html>
