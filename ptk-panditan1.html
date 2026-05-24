@@ -1,800 +1,251 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>PTK Panditan 1 - APASE WEB</title>
-
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-
-min-height:100vh;
-
-background:
-linear-gradient(
-135deg,
-#0f172a,
-#1e3a8a,
-#2563eb
-);
-
-padding:30px;
-
-overflow-x:hidden;
-
-color:white;
-
-}
-
-/* BACKGROUND */
-
-.blur1,
-.blur2{
-
-position:fixed;
-
-border-radius:50%;
-
-filter:blur(120px);
-
-opacity:.4;
-
-z-index:0;
-
-}
-
-.blur1{
-
-width:350px;
-height:350px;
-
-background:#60a5fa;
-
-top:-120px;
-left:-120px;
-
-}
-
-.blur2{
-
-width:350px;
-height:350px;
-
-background:#2563eb;
-
-bottom:-120px;
-right:-120px;
-
-}
-
-/* CONTAINER */
-
-.container{
-
-position:relative;
-
-z-index:2;
-
-max-width:1400px;
-
-margin:auto;
-
-}
-
-/* HEADER */
-
-.header{
-
-background:
-linear-gradient(
-135deg,
-#166534,
-#15803d,
-#22c55e
-);
-
-backdrop-filter:blur(20px);
-
-border:
-1px solid rgba(255,255,255,0.15);
-
-border-radius:35px;
-
-padding:40px 30px;
-
-text-align:center;
-
-margin-bottom:30px;
-
-box-shadow:
-0 10px 35px rgba(0,0,0,0.25);
-
-}
-
-.header h1{
-
-font-size:40px;
-
-font-weight:700;
-
-margin-bottom:10px;
-
-}
-
-.header p{
-
-color:#dbeafe;
-
-font-size:16px;
-
-}
-
-/* SEARCH */
-
-.search-box{
-
-margin-bottom:30px;
-
-display:flex;
-
-justify-content:center;
-
-}
-
-.search-box input{
-
-width:100%;
-
-max-width:500px;
-
-padding:16px 20px;
-
-border:none;
-
-outline:none;
-
-border-radius:18px;
-
-background:
-rgba(255,255,255,0.15);
-
-backdrop-filter:blur(10px);
-
-color:white;
-
-font-size:16px;
-
-}
-
-.search-box input::placeholder{
-
-color:#dbeafe;
-
-}
-
-/* STAT */
-
-.stat-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(250px,1fr));
-
-gap:25px;
-
-margin-bottom:30px;
-
-}
-
-.stat-card{
-
-background:
-rgba(255,255,255,0.12);
-
-backdrop-filter:blur(20px);
-
-border:
-1px solid rgba(255,255,255,0.15);
-
-border-radius:30px;
-
-padding:30px;
-
-text-align:center;
-
-box-shadow:
-0 10px 35px rgba(0,0,0,0.2);
-
-}
-
-.stat-card h2{
-
-font-size:40px;
-
-margin-bottom:10px;
-
-}
-
-.stat-card p{
-
-color:#dbeafe;
-
-}
-
-/* CARD GRID */
-
-.card-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(320px,1fr));
-
-gap:25px;
-
-margin-bottom:40px;
-
-}
-
-.teacher-card{
-
-background:
-rgba(255,255,255,0.12);
-
-backdrop-filter:blur(20px);
-
-border:
-1px solid rgba(255,255,255,0.15);
-
-border-radius:30px;
-
-padding:25px;
-
-transition:.3s;
-
-box-shadow:
-0 10px 35px rgba(0,0,0,0.2);
-
-}
-
-.teacher-card:hover{
-
-transform:translateY(-8px);
-
-background:
-rgba(255,255,255,0.18);
-
-}
-
-.teacher-name{
-
-font-size:22px;
-
-font-weight:700;
-
-margin-bottom:10px;
-
-}
-
-.teacher-job{
-
-display:inline-block;
-
-padding:8px 14px;
-
-border-radius:12px;
-
-background:
-rgba(255,255,255,0.15);
-
-font-size:13px;
-
-margin-bottom:18px;
-
-}
-
-.teacher-info{
-
-font-size:14px;
-
-line-height:1.9;
-
-color:#e2e8f0;
-
-}
-
-/* TABLE */
-
-.table-container{
-
-background:
-rgba(255,255,255,0.12);
-
-backdrop-filter:blur(20px);
-
-border:
-1px solid rgba(255,255,255,0.15);
-
-border-radius:35px;
-
-padding:25px;
-
-overflow-x:auto;
-
-box-shadow:
-0 10px 35px rgba(0,0,0,0.2);
-
-}
-
-.table-title{
-
-font-size:24px;
-
-font-weight:700;
-
-margin-bottom:20px;
-
-}
-
-table{
-
-width:100%;
-
-border-collapse:collapse;
-
-}
-
-th,
-td{
-
-padding:15px;
-
-text-align:left;
-
-border-bottom:
-1px solid rgba(255,255,255,0.08);
-
-font-size:14px;
-
-vertical-align:top;
-
-}
-
-th{
-
-background:
-rgba(255,255,255,0.1);
-
-color:#dbeafe;
-
-}
-
-/* BUTTON */
-
-.button-area{
-
-margin-top:35px;
-
-text-align:center;
-
-}
-
-.back-btn{
-
-display:inline-block;
-
-padding:14px 28px;
-
-border-radius:16px;
-
-background:white;
-
-color:#1e3a8a;
-
-text-decoration:none;
-
-font-weight:700;
-
-transition:.3s;
-
-box-shadow:
-0 10px 25px rgba(0,0,0,0.2);
-
-}
-
-.back-btn:hover{
-
-background:#dbeafe;
-
-transform:translateY(-3px);
-
-}
-
-/* LOADING */
-
-.loading{
-
-text-align:center;
-
-font-size:20px;
-
-padding:40px;
-
-color:#dbeafe;
-
-}
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
-
-body{
-
-padding:15px;
-
-}
-
-.header h1{
-
-font-size:30px;
-
-}
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTK Panditan 1 - APASE WEB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Efek Timbul Kustom */
+        .btn-timbul {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-timbul:hover {
+            transform: translateY(-5px);
+        }
+        /* Kustomisasi Scrollbar untuk Tabel Data Luas */
+        .custom-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+    </style>
 </head>
-
-<body>
-
-<div class="blur1"></div>
-<div class="blur2"></div>
-
-<div class="container">
-
-<!-- HEADER -->
-
-<div class="header">
-
-<h1 style="line-height:1.5;">
-DAFTAR NAMA GURU DAN TENAGA KEPENDIDIKAN
-</h1>
-
-<p style="margin-top:15px; line-height:1.9; font-size:18px;">
-
-SDN PANDITAN I LUMBANG
-<br>
-
-KABUPATEN PASURUAN
-<br>
-
-NPSN : 20519051
-
-</p>
-
-</div>
-
-<!-- SEARCH -->
-
-<div class="search-box">
-
-<input type="text"
-       id="searchInput"
-       placeholder="Cari nama PTK...">
-
-</div>
-
-<!-- STAT -->
-
-<div class="stat-grid">
-
-<div class="stat-card">
-
-<h2 id="totalPTK">
-0
-</h2>
-
-<p>Total PTK</p>
-
-</div>
-
-</div>
-
-<!-- LOADING -->
-
-<div class="loading"
-     id="loading">
-
-Memuat data PTK...
-
-</div>
-
-<!-- CARD -->
-
-<div class="card-grid"
-     id="cardGrid">
-
-</div>
-
-<!-- TABLE -->
-
-<div class="table-container">
-
-<div class="table-title">
-
-Data Lengkap PTK
-
-</div>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>NO</th>
-<th>NAMA</th>
-<th>NIP / NRPTT / NRTS</th>
-<th>TEMPAT LAHIR</th>
-<th>TANGGAL LAHIR</th>
-<th>PANGKAT</th>
-<th>PENDIDIKAN</th>
-<th>TUGAS</th>
-<th>MULAI</th>
-<th>NUPTK</th>
-<th>ALAMAT</th>
-<th>STATUS</th>
-
-</tr>
-
-</thead>
-
-<tbody id="tableBody">
-
-</tbody>
-
-</table>
-
-</div>
-
-<!-- BUTTON -->
-
-<div class="button-area">
-
-<a href="dashboard.html"
-   class="back-btn">
-
-← Kembali ke Dashboard
-
-</a>
-
-</div>
-
-</div>
-
-<script>
-
-// =====================================
-// API URL APPS SCRIPT BARU
-// =====================================
-
-const API_URL =
-"https://script.google.com/macros/s/AKfycbwxbjwlJNBnnSMqgIZAodmJUbpJ0RgvIoetmf3hfxIGn3kdRQosQlYuUWDtI0L0lPHf/exec";
-
-// =====================================
-// ELEMENT
-// =====================================
-
-const tableBody =
-document.getElementById(
-"tableBody"
-);
-
-const cardGrid =
-document.getElementById(
-"cardGrid"
-);
-
-const totalPTK =
-document.getElementById(
-"totalPTK"
-);
-
-const loading =
-document.getElementById(
-"loading"
-);
-
-const searchInput =
-document.getElementById(
-"searchInput"
-);
-
-let allData = [];
-
-// =====================================
-// LOAD DATA PTK
-// =====================================
-
-async function loadPTK(){
-
-try{
-
-const response =
-await fetch(
-`${API_URL}?action=getDataPTK`
-);
-
-const result =
-await response.json();
-
-if(result.status === "success"){
-
-allData =
-result.data;
-
-renderData(allData);
-
-loading.style.display =
-"none";
-
-}
-else{
-
-loading.innerHTML =
-"Gagal memuat data PTK";
-
-}
-
-}
-catch(error){
-
-loading.innerHTML =
-"Gagal memuat data";
-
-console.log(error);
-
-}
-
-}
-
-// =====================================
-// RENDER DATA
-// =====================================
-
-function renderData(data){
-
-tableBody.innerHTML = "";
-cardGrid.innerHTML = "";
-
-totalPTK.innerText =
-data.length;
-
-data.forEach(row => {
-
-const no = row.no || "-";
-const nama = row.nama || "-";
-const nip = row.nip || "-";
-const tempat = row.tempat_lahir || "-";
-const tanggal = row.tanggal_lahir || "-";
-const pangkat = row.pangkat || "-";
-const pendidikan = row.pendidikan || "-";
-const tugas = row.tugas || "-";
-const mulai = row.mulai || "-";
-const nuptk = row.nuptk || "-";
-const alamat = row.alamat || "-";
-const status = row.status || "-";
-
-// CARD
-cardGrid.innerHTML += `
-
-<div class="teacher-card">
-
-<div class="teacher-name">
-${nama}
-</div>
-
-<div class="teacher-job">
-${tugas}
-</div>
-
-<div class="teacher-info">
-
-<b>NIP:</b> ${nip}<br>
-
-<b>Pendidikan:</b> ${pendidikan}<br>
-
-<b>Status:</b> ${status}<br>
-
-<b>NUPTK:</b> ${nuptk}<br>
-
-<b>TTL:</b> ${tempat}, ${tanggal}
-
-</div>
-
-</div>
-
-`;
-
-// TABLE
-tableBody.innerHTML += `
-
-<tr>
-
-<td>${no}</td>
-<td>${nama}</td>
-<td>${nip}</td>
-<td>${tempat}</td>
-<td>${tanggal}</td>
-<td>${pangkat}</td>
-<td>${pendidikan}</td>
-<td>${tugas}</td>
-<td>${mulai}</td>
-<td>${nuptk}</td>
-<td>${alamat}</td>
-<td>${status}</td>
-
-</tr>
-
-`;
-
-});
-
-}
-
-// =====================================
-// SEARCH
-// =====================================
-
-searchInput.addEventListener(
-"keyup",
-function(){
-
-const keyword =
-this.value.toLowerCase();
-
-const filtered =
-allData.filter(row => {
-
-return String(row.nama)
-.toLowerCase()
-.includes(keyword);
-
-});
-
-renderData(filtered);
-
-}
-);
-
-// =====================================
-// INIT
-// =====================================
-
-loadPTK();
-
-</script>
-
+<body class="bg-slate-950 min-h-screen text-slate-100 relative overflow-x-hidden pb-12 antialiased">
+
+    <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[150px] pointer-events-none"></div>
+    <div class="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-emerald-600/20 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 relative z-10">
+
+        <div class="bg-gradient-to-br from-emerald-800 via-emerald-900 to-slate-900 border border-emerald-500/30 rounded-3xl p-6 md:p-10 text-center shadow-2xl mb-8 relative overflow-hidden group">
+            <div class="absolute -right-16 -bottom-16 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl transition-all group-hover:scale-120 duration-700"></div>
+            <div class="flex flex-col items-center justify-center">
+                <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-emerald-500/30 shadow-inner">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-white max-w-4xl leading-snug">
+                    DAFTAR GURU & TENAGA KEPENDIDIKAN
+                </h1>
+                <div class="w-24 h-1 bg-amber-400 my-4 rounded-full"></div>
+                <p class="text-slate-300 text-sm md:text-lg font-medium tracking-wide">
+                    SDN PANDITAN I LUMBANG • KABUPATEN PASURUAN
+                </p>
+                <span class="mt-2 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-emerald-950/80 border border-emerald-500/40 text-emerald-300">
+                    <i class="fa-solid fa-server text-[10px]"></i> NPSN : 20519051
+                </span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div class="md:col-span-2 relative">
+                <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <input type="text" id="searchInput" placeholder="Cari nama atau tugas PTK..." 
+                       class="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl focus:outline-none focus:border-emerald-500 focus:bg-white/10 text-white placeholder-slate-400 shadow-lg backdrop-blur-md transition-all text-sm md:text-base">
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center justify-between shadow-lg backdrop-blur-md">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Total Personel</p>
+                        <h2 id="totalPTK" class="text-2xl font-bold text-white">0</h2>
+                    </div>
+                </div>
+                <span class="text-xs font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-md">Aktif</span>
+            </div>
+        </div>
+
+        <div id="loading" class="bg-white/5 border border-white/10 rounded-3xl p-12 text-center backdrop-blur-md shadow-xl my-6">
+            <div class="flex flex-col items-center gap-3">
+                <i class="fa-solid fa-circle-notch animate-spin text-4xl text-emerald-400"></i>
+                <p class="text-slate-400 text-sm font-medium">Sinkronisasi database induk PTK...</p>
+            </div>
+        </div>
+
+        <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-5 shadow-2xl backdrop-blur-md overflow-hidden">
+            <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
+                <div class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></div>
+                <h3 class="text-lg font-bold text-white tracking-wide">Data Lengkap Transkrip PTK</h3>
+            </div>
+            
+            <div class="overflow-x-auto custom-scroll">
+                <table class="w-full text-left border-collapse whitespace-nowrap">
+                    <thead>
+                        <tr class="bg-white/5 text-slate-300 border-b border-white/10 text-xs font-semibold uppercase tracking-wider">
+                            <th class="p-4 rounded-l-xl">NO</th>
+                            <th class="p-4">NAMA</th>
+                            <th class="p-4">NIP / NRPTT</th>
+                            <th class="p-4">TEMPAT LAHIR</th>
+                            <th class="p-4">TANGGAL LAHIR</th>
+                            <th class="p-4">PANGKAT</th>
+                            <th class="p-4">PENDIDIKAN</th>
+                            <th class="p-4">TUGAS MENGAJAR</th>
+                            <th class="p-4">TMT MULAI</th>
+                            <th class="p-4">NUPTK</th>
+                            <th class="p-4">ALAMAT ASAL</th>
+                            <th class="p-4 rounded-r-xl">STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="text-xs divide-y divide-white/5 text-slate-300">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-10 flex justify-center">
+            <a href="dashboard.html" class="btn-timbul inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-950 font-bold text-sm px-8 py-3.5 rounded-2xl shadow-xl transition-all cursor-pointer">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Dashboard
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbwxbjwlJNBnnSMqgIZAodmJUbpJ0RgvIoetmf3hfxIGn3kdRQosQlYuUWDtI0L0lPHf/exec";
+
+        const tableBody = document.getElementById("tableBody");
+        const cardGrid = document.getElementById("cardGrid");
+        const totalPTK = document.getElementById("totalPTK");
+        const loading = document.getElementById("loading");
+        const searchInput = document.getElementById("searchInput");
+
+        let allData = [];
+
+        async function loadPTK(){
+            try {
+                const response = await fetch(`${API_URL}?action=getDataPTK`);
+                const result = await response.json();
+                
+                if(result.status === "success"){
+                    allData = result.data;
+                    renderData(allData);
+                    loading.classList.add("hidden");
+                } else {
+                    loading.innerHTML = `<p class="text-rose-400 font-semibold"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Gagal memuat skema data PTK.</p>`;
+                }
+            } catch(error) {
+                loading.innerHTML = `<p class="text-rose-400 font-semibold"><i class="fa-solid fa-circle-exclamation mr-1"></i> Gangguan koneksi API server.</p>`;
+                console.log(error);
+            }
+        }
+
+        function renderData(data){
+            tableBody.innerHTML = "";
+            cardGrid.innerHTML = "";
+            totalPTK.innerText = data.length;
+
+            if(data.length === 0) {
+                cardGrid.innerHTML = `
+                    <div class="col-span-full bg-white/5 border border-white/5 text-center p-8 rounded-2xl text-slate-400 text-sm">
+                        <i class="fa-solid fa-user-slash text-2xl mb-2 block"></i> Data PTK tidak ditemukan
+                    </div>`;
+                return;
+            }
+
+            data.forEach(row => {
+                const no = row.no || "-";
+                const nama = row.nama || "-";
+                const nip = row.nip || "-";
+                const tempat = row.tempat_lahir || "-";
+                const tanggal = row.tanggal_lahir || "-";
+                const pangkat = row.pangkat || "-";
+                const pendidikan = row.pendidikan || "-";
+                const tugas = row.tugas || "-";
+                const mulai = row.mulai || "-";
+                const nuptk = row.nuptk || "-";
+                const alamat = row.alamat || "-";
+                const status = row.status || "-";
+
+                // GENERATE PREMIUM GLASS CARDS
+                cardGrid.innerHTML += `
+                    <div class="btn-timbul bg-white/5 border border-white/10 hover:border-emerald-500/40 hover:bg-white/10 rounded-2xl p-5 shadow-xl backdrop-blur-md transition-all duration-300">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="w-10 h-10 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 font-bold text-sm">
+                                ${no}
+                            </div>
+                            <span class="px-2.5 py-1 rounded-md text-[10px] font-bold tracking-wider uppercase ${status.toLowerCase().includes('pns') || status.toLowerCase().includes('p3k') ? 'bg-indigo-500/10 border border-indigo-500/20 text-indigo-300' : 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-300'}">
+                                ${status}
+                            </span>
+                        </div>
+                        <h4 class="text-base font-bold text-white tracking-wide mb-1 leading-snug">${nama}</h4>
+                        <span class="inline-block text-[11px] font-medium text-slate-300 bg-white/10 px-2.5 py-1 rounded-lg mb-4 border border-white/5">
+                            <i class="fa-solid fa-briefcase text-[10px] mr-1 text-emerald-400"></i>${tugas}
+                        </span>
+                        
+                        <div class="space-y-2 border-t border-white/5 pt-3 text-xs text-slate-400">
+                            <div class="flex justify-between"><span class="font-medium">NIP / Identitas</span><span class="text-white font-mono">${nip}</span></div>
+                            <div class="flex justify-between"><span class="font-medium">NUPTK</span><span class="text-white font-mono">${nuptk}</span></div>
+                            <div class="flex justify-between"><span class="font-medium">Pendidikan</span><span class="text-white">${pendidikan}</span></div>
+                            <div class="flex justify-between"><span class="font-medium">TTL</span><span class="text-white text-right max-w-[180px] truncate">${tempat}, ${tanggal}</span></div>
+                        </div>
+                    </div>
+                `;
+
+                // GENERATE TABLE ROWS
+                tableBody.innerHTML += `
+                    <tr class="hover:bg-white/5 transition-colors group">
+                        <td class="p-4 font-bold text-emerald-400">${no}</td>
+                        <td class="p-4 font-semibold text-white group-hover:text-emerald-400 transition-colors">${nama}</td>
+                        <td class="p-4 font-mono">${nip}</td>
+                        <td class="p-4">${tempat}</td>
+                        <td class="p-4">${tanggal}</td>
+                        <td class="p-4">${pangkat}</td>
+                        <td class="p-4">${pendidikan}</td>
+                        <td class="p-4"><span class="bg-white/5 border border-white/5 px-2 py-0.5 rounded text-[11px]">${tugas}</span></td>
+                        <td class="p-4">${mulai}</td>
+                        <td class="p-4 font-mono">${nuptk}</td>
+                        <td class="p-4 max-w-xs truncate">${alamat}</td>
+                        <td class="p-4"><span class="text-[10px] font-bold px-2 py-0.5 rounded border ${status.toLowerCase().includes('pns') || status.toLowerCase().includes('p3k') ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-300' : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300'}">${status}</span></td>
+                    </tr>
+                `;
+            });
+        }
+
+        // LIVE SEARCH FILTER WITH PERFORMANCE OPTIMIZATION
+        searchInput.addEventListener("keyup", function(){
+            const keyword = this.value.toLowerCase();
+            const filtered = allData.filter(row => {
+                return String(row.nama).toLowerCase().includes(keyword) || 
+                       String(row.tugas).toLowerCase().includes(keyword);
+            });
+            renderData(filtered);
+        });
+
+        // RUN ENGINE
+        loadPTK();
+    </script>
 </body>
 </html>
