@@ -18,7 +18,7 @@
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .btn-timbul:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
         }
         /* Kustomisasi Scrollbar untuk Tabel Data Luas */
         .custom-scroll::-webkit-scrollbar {
@@ -42,7 +42,13 @@
     <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[150px] pointer-events-none"></div>
     <div class="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-emerald-600/20 rounded-full blur-[150px] pointer-events-none"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 relative z-10">
+
+        <div class="flex justify-end mb-4">
+            <a href="dashboard.html" class="btn-timbul inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-950 font-bold text-xs md:text-sm px-5 py-2.5 rounded-xl shadow-xl transition-all cursor-pointer decoration-transparent">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Dashboard
+            </a>
+        </div>
 
         <div class="bg-gradient-to-br from-emerald-800 via-emerald-900 to-slate-900 border border-emerald-500/30 rounded-3xl p-6 md:p-10 text-center shadow-2xl mb-8 relative overflow-hidden group">
             <div class="absolute -right-16 -bottom-16 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl transition-all group-hover:scale-120 duration-700"></div>
@@ -123,12 +129,6 @@
                         </tbody>
                 </table>
             </div>
-        </div>
-
-        <div class="mt-10 flex justify-center">
-            <a href="dashboard.html" class="btn-timbul inline-flex items-center gap-2 bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-950 font-bold text-sm px-8 py-3.5 rounded-2xl shadow-xl transition-all cursor-pointer">
-                <i class="fa-solid fa-arrow-left"></i> Kembali ke Dashboard
-            </a>
         </div>
 
     </div>
@@ -228,7 +228,7 @@
                         <td class="p-4">${mulai}</td>
                         <td class="p-4 font-mono">${nuptk}</td>
                         <td class="p-4 max-w-xs truncate">${alamat}</td>
-                        <td class="p-4"><span class="text-[10px] font-bold px-2 py-0.5 rounded border ${status.toLowerCase().includes('pns') || status.toLowerCase().includes('p3k') ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-300' : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300'}">${status}</span></td>
+                        <td class="p-4"><span class="text-[10px] font-bold px-2 py-0.5 rounded border ${status.toLowerCase().includes('pns') || status.toLowerCase().includes('p3k') ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-300' : 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-300'}">${status}</span></td>
                     </tr>
                 `;
             });
