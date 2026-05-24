@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Login APASE WEB</title>
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+
+      height:100vh;
+
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      overflow:hidden;
+
+      background:
+      linear-gradient(
+      135deg,
+      #0f172a,
+      #1e3a8a,
+      #2563eb
+      );
+
+      position:relative;
+
+    }
+
+    /* ========================= */
+    /* BACKGROUND BLUR */
+    /* ========================= */
+
+    .blur1,
+    .blur2{
+
+      position:absolute;
+
+      border-radius:50%;
+
+      filter:blur(120px);
+
+      opacity:.45;
+
+    }
+
+    .blur1{
+
+      width:350px;
+      height:350px;
+
+      background:#60a5fa;
+
+      top:-120px;
+      left:-120px;
+
+    }
+
+    .blur2{
+
+      width:350px;
+      height:350px;
+
+      background:#2563eb;
+
+      bottom:-120px;
+      right:-120px;
+
+    }
+
+    /* ========================= */
+    /* LOGIN BOX */
+    /* ========================= */
+
+    .login-container{
+
+      position:relative;
+
+      z-index:2;
+
+      width:400px;
+
+      padding:45px 40px;
+
+      border-radius:30px;
+
+      background:
+      rgba(255,255,255,0.12);
+
+      backdrop-filter:blur(20px);
+
+      border:
+      1px solid rgba(255,255,255,0.18);
+
+      box-shadow:
+      0 10px 35px rgba(0,0,0,0.3);
+
+      color:white;
+
+    }
+
+    /* ========================= */
+    /* LOGO */
+    /* ========================= */
+
+    .logo{
+
+      text-align:center;
+
+      margin-bottom:30px;
+
+    }
+
+    .logo h1{
+
+      font-size:36px;
+
+      font-weight:700;
+
+      letter-spacing:2px;
+
+      margin-bottom:8px;
+
+    }
+
+    .logo p{
+
+      font-size:15px;
+
+      opacity:.8;
+
+    }
+
+    /* ========================= */
+    /* INPUT */
+    /* ========================= */
+
+    .input-group{
+
+      margin-bottom:22px;
+
+    }
+
+    .input-group label{
+
+      display:block;
+
+      margin-bottom:8px;
+
+      font-size:14px;
+
+      font-weight:500;
+
+    }
+
+    .input-group input{
+
+      width:100%;
+
+      padding:15px 16px;
+
+      border:none;
+
+      border-radius:14px;
+
+      outline:none;
+
+      background:
+      rgba(255,255,255,0.15);
+
+      color:white;
+
+      font-size:15px;
+
+      transition:.3s;
+
+    }
+
+    .input-group input::placeholder{
+
+      color:
+      rgba(255,255,255,0.7);
+
+    }
+
+    .input-group input:focus{
+
+      background:
+      rgba(255,255,255,0.22);
+
+      border:
+      1px solid #93c5fd;
+
+    }
+
+    /* ========================= */
+    /* BUTTON */
+    /* ========================= */
+
+    .login-btn{
+
+      width:100%;
+
+      padding:15px;
+
+      border:none;
+
+      border-radius:15px;
+
+      background:#9ca3af;
+
+      color:white;
+
+      font-size:16px;
+
+      font-weight:700;
+
+      cursor:not-allowed;
+
+      transition:.3s;
+
+      margin-top:10px;
+
+      opacity:.7;
+
+    }
+
+    .login-btn.active{
+
+      background:#2563eb;
+
+      cursor:pointer;
+
+      opacity:1;
+
+    }
+
+    .login-btn.active:hover{
+
+      transform:
+      translateY(-2px);
+
+      background:#1d4ed8;
+
+      box-shadow:
+      0 10px 20px rgba(0,0,0,0.2);
+
+    }
+
+    /* ========================= */
+    /* MESSAGE */
+    /* ========================= */
+
+    .loading{
+
+      display:none;
+
+      text-align:center;
+
+      margin-top:18px;
+
+      font-size:14px;
+
+      color:#dbeafe;
+
+    }
+
+    .error-message{
+
+      display:none;
+
+      margin-top:18px;
+
+      text-align:center;
+
+      font-size:14px;
+
+      color:#fecaca;
+
+    }
+
+    /* ========================= */
+    /* FOOTER */
+    /* ========================= */
+
+    .footer{
+
+      margin-top:28px;
+
+      text-align:center;
+
+      font-size:13px;
+
+      opacity:.7;
+
+    }
+
+    /* ========================= */
+    /* RESPONSIVE */
+    /* ========================= */
+
+    @media(max-width:480px){
+
+      .login-container{
+
+        width:92%;
+
+        padding:35px 25px;
+
+      }
+
+      .logo h1{
+
+        font-size:30px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- BACKGROUND -->
+  <div class="blur1"></div>
+  <div class="blur2"></div>
+
+  <!-- LOGIN -->
+  <div class="login-container">
+
+    <div class="logo">
+
+      <h1>
+        APASE WEB
+      </h1>
+
+      <p>
+        Aplikasi Administrasi Sekolah
+      </p>
+
+    </div>
+
+    <!-- USERNAME -->
+    <div class="input-group">
+
+      <label>
+        Username
+      </label>
+
+      <input type="text"
+             id="username"
+             placeholder="Masukkan username">
+
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="input-group">
+
+      <label>
+        Password
+      </label>
+
+      <input type="password"
+             id="password"
+             placeholder="Masukkan password">
+
+    </div>
+
+    <!-- BUTTON -->
+    <button class="login-btn"
+            onclick="login()"
+            id="loginBtn"
+            disabled>
+
+      LOGIN
+
+    </button>
+
+    <!-- LOADING -->
+    <div class="loading"
+         id="loading">
+
+      Memeriksa akun...
+
+    </div>
+
+    <!-- ERROR -->
+    <div class="error-message"
+         id="errorMessage">
+
+      Username atau password salah
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+      APASE WEB © 2026
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+
+    // =====================================
+    // URL GOOGLE APPS SCRIPT
+    // =====================================
+
+    const API_URL =
+    "https://script.google.com/macros/s/AKfycbwo6yEkwQebM4ImabaLk7IWZx7z8l1vGkVOzJw1SlhgW8kwbL7_THG4LzmZfyvBemoo/exec";
+
+
+    // =====================================
+    // AUTO REDIRECT JIKA SUDAH LOGIN
+    // =====================================
+
+    const savedUser =
+    localStorage.getItem("loginUser");
+
+    if(savedUser){
+
+      // ADMIN
+      if(savedUser.toLowerCase() === "admin"){
+
+        window.location.href =
+        "admin-panel.html";
+
+      }
+
+      // USER BIASA
+      else{
+
+        window.location.href =
+        "dashboard.html";
+
+      }
+
+    }
+
+
+    // =====================================
+    // AKTIFKAN TOMBOL LOGIN
+    // =====================================
+
+    const usernameInput =
+    document.getElementById("username");
+
+    const passwordInput =
+    document.getElementById("password");
+
+    const loginBtn =
+    document.getElementById("loginBtn");
+
+    function checkInput(){
+
+      const username =
+      usernameInput.value.trim();
+
+      const password =
+      passwordInput.value.trim();
+
+      if(username !== "" && password !== ""){
+
+        loginBtn.disabled = false;
+
+        loginBtn.classList.add(
+        "active"
+        );
+
+      }
+
+      else{
+
+        loginBtn.disabled = true;
+
+        loginBtn.classList.remove(
+        "active"
+        );
+
+      }
+
+    }
+
+    usernameInput.addEventListener(
+    "input",
+    checkInput
+    );
+
+    passwordInput.addEventListener(
+    "input",
+    checkInput
+    );
+
+
+    // =====================================
+    // LOGIN SYSTEM
+    // =====================================
+
+    async function login(){
+
+      if(loginBtn.disabled){
+        return;
+      }
+
+      const username =
+      document.getElementById("username")
+      .value
+      .trim();
+
+      const password =
+      document.getElementById("password")
+      .value
+      .trim();
+
+      const errorMessage =
+      document.getElementById("errorMessage");
+
+      const loading =
+      document.getElementById("loading");
+
+      // RESET MESSAGE
+      errorMessage.style.display =
+      "none";
+
+      // VALIDASI
+      if(username === "" || password === ""){
+
+        errorMessage.innerText =
+        "Username dan password wajib diisi";
+
+        errorMessage.style.display =
+        "block";
+
+        return;
+
+      }
+
+      loading.style.display =
+      "block";
+
+      try{
+
+        // URL API
+        const url =
+        `${API_URL}?action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+
+        // FETCH API
+        const response =
+        await fetch(url,{
+
+          method:"GET",
+
+          mode:"cors"
+
+        });
+
+        const result =
+        await response.json();
+
+        loading.style.display =
+        "none";
+
+        // LOGIN BERHASIL
+        if(result.status === "success"){
+
+          // SIMPAN SESSION
+          localStorage.setItem(
+            "loginUser",
+            result.username
+          );
+
+          // ADMIN
+          if(result.username.toLowerCase() === "admin"){
+
+            window.location.href =
+            "admin-panel.html";
+
+          }
+
+          // USER BIASA
+          else{
+
+            window.location.href =
+            "dashboard.html";
+
+          }
+
+        }
+
+        // LOGIN GAGAL
+        else{
+
+          errorMessage.innerText =
+          "Username atau password salah";
+
+          errorMessage.style.display =
+          "block";
+
+        }
+
+      }
+
+      // ERROR
+      catch(error){
+
+        loading.style.display =
+        "none";
+
+        errorMessage.innerText =
+        "Koneksi ke server gagal";
+
+        errorMessage.style.display =
+        "block";
+
+        console.error(error);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>

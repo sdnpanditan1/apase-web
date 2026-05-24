@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>APASE WEB Microsite</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+position:relative;
+padding:50px 20px 90px;
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#1e3a8a,
+#2563eb
+);
+}
+
+.blur1,
+.blur2{
+position:absolute;
+border-radius:50%;
+filter:blur(120px);
+opacity:.35;
+}
+
+.blur1{
+width:300px;
+height:300px;
+background:#60a5fa;
+top:-100px;
+left:-100px;
+}
+
+.blur2{
+width:300px;
+height:300px;
+background:#2563eb;
+bottom:-100px;
+right:-100px;
+}
+
+.topbar{
+position:relative;
+z-index:2;
+max-width:1400px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.15);
+padding:18px 25px;
+border-radius:22px;
+margin-bottom:35px;
+}
+
+.user-info{
+font-size:15px;
+font-weight:500;
+}
+
+.user-info span{
+font-weight:700;
+color:#facc15;
+}
+
+.logout-btn{
+padding:12px 22px;
+border:none;
+border-radius:14px;
+background:#ef4444;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.logout-btn:hover{
+background:#dc2626;
+transform:translateY(-2px);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:1400px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+.hero-left h1{
+font-size:65px;
+font-weight:700;
+line-height:1.1;
+margin-bottom:20px;
+}
+
+.hero-left p{
+font-size:18px;
+line-height:1.8;
+opacity:.9;
+margin-bottom:30px;
+max-width:650px;
+}
+
+.hero-btns{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.hero-btn{
+padding:14px 24px;
+border-radius:16px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+}
+
+.btn-primary{
+background:#facc15;
+color:#111827;
+}
+
+.btn-primary:hover{
+background:#fde047;
+transform:translateY(-2px);
+}
+
+.btn-secondary{
+background:rgba(255,255,255,0.12);
+color:white;
+border:1px solid rgba(255,255,255,0.2);
+}
+
+.btn-secondary:hover{
+background:rgba(255,255,255,0.2);
+}
+
+.hero-right{
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.hero-card{
+width:100%;
+max-width:480px;
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,0.15);
+border-radius:35px;
+padding:35px;
+text-align:center;
+box-shadow:0 15px 40px rgba(0,0,0,0.35);
+}
+
+.hero-card img{
+width:120px;
+height:120px;
+border-radius:50%;
+background:white;
+padding:8px;
+object-fit:cover;
+margin-bottom:20px;
+}
+
+.hero-card h2{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.hero-card p{
+line-height:1.8;
+opacity:.9;
+}
+
+/* MENU SECTION */
+.menu-section{
+padding:70px 20px;
+background:#f8fafc;
+color:#111827;
+}
+
+.section-title{
+max-width:1400px;
+margin:auto auto 40px;
+text-align:center;
+}
+
+.section-title h2{
+font-size:42px;
+margin-bottom:10px;
+font-weight:700;
+}
+
+.section-title p{
+font-size:17px;
+color:#475569;
+}
+
+.menu-grid{
+max-width:1400px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:28px;
+}
+
+.menu-card{
+background:white;
+border-radius:30px;
+padding:30px 25px;
+text-decoration:none;
+color:#111827;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:.35s;
+border:2px solid transparent;
+}
+
+.menu-card:hover{
+transform:translateY(-10px);
+border-color:#2563eb;
+}
+
+.menu-icon{
+width:100px;
+height:100px;
+border-radius:28px;
+background:#dbeafe;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:25px;
+}
+
+.menu-icon img{
+width:65%;
+height:65%;
+object-fit:contain;
+}
+
+.menu-title{
+font-size:20px;
+font-weight:700;
+margin-bottom:10px;
+}
+
+.menu-desc{
+font-size:14px;
+line-height:1.8;
+color:#475569;
+}
+
+/* INFO */
+.info-section{
+padding:70px 20px;
+background:#0f172a;
+}
+
+.info-grid{
+max-width:1400px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.info-card{
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(12px);
+padding:30px;
+border-radius:28px;
+text-align:center;
+}
+
+.info-card h3{
+font-size:45px;
+color:#facc15;
+margin-bottom:10px;
+}
+
+.info-card p{
+opacity:.9;
+line-height:1.8;
+}
+
+/* FOOTER */
+.footer{
+background:#020617;
+padding:35px 20px;
+text-align:center;
+font-size:14px;
+line-height:2;
+color:#94a3b8;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+.hero-content{
+grid-template-columns:1fr;
+}
+
+.hero-left h1{
+font-size:45px;
+}
+
+.hero-left,
+.hero-right{
+text-align:center;
+}
+
+.hero-btns{
+justify-content:center;
+}
+
+}
+
+@media(max-width:600px){
+
+.hero-left h1{
+font-size:35px;
+}
+
+.section-title h2{
+font-size:30px;
+}
+
+.topbar{
+flex-direction:column;
+gap:15px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+
+<div class="blur1"></div>
+<div class="blur2"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+
+<div class="user-info">
+Login Sebagai :
+<span id="loginName">User</span>
+</div>
+
+<button class="logout-btn" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<!-- HERO CONTENT -->
+<div class="hero-content">
+
+<div class="hero-left">
+
+<h1>
+APASE WEB
+</h1>
+
+<p>
+Aplikasi Administrasi Sekolah Digital SDN Panditan I untuk pengelolaan data sekolah, guru, tenaga kependidikan, peserta didik, supervisi, program sekolah, dan administrasi pendidikan secara modern.
+</p>
+
+<div class="hero-btns">
+
+<a href="https://sugeng1104.github.io/apase-web/profil.html" class="hero-btn btn-primary">
+Lihat Profil Sekolah
+</a>
+
+<a href="https://sugeng1104.github.io/apase-web/pages/pd-panditan1.html" class="hero-btn btn-secondary">
+Data Statistik Siswa
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<div class="hero-card">
+
+<img src="assets/logo/logo.png">
+
+<h2>
+SDN PANDITAN I
+</h2>
+
+<p>
+Platform administrasi sekolah berbasis web dengan tampilan modern, cepat, responsif, dan terintegrasi Google Spreadsheet.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MENU -->
+<section class="menu-section">
+
+<div class="section-title">
+<h2>Menu Administrasi</h2>
+<p>Silakan pilih layanan administrasi sekolah yang tersedia</p>
+</div>
+
+<div class="menu-grid">
+
+<a href="https://sugeng1104.github.io/apase-web/profil-ks.html" class="menu-card">
+<div class="menu-icon">
+<img src="assets/img/gbr1.png">
+</div>
+<div class="menu-title">Data Kepala Sekolah</div>
+<div class="menu-desc">
+Informasi kepala sekolah dan administrasi kepemimpinan sekolah.
+</div>
+</a>
+
+<a href="https://sugeng1104.github.io/apase-web/profil.html" class="menu-card">
+<div class="menu-icon">
+<img src="assets/img/gbr2.png">
+</div>
+<div class="menu-title">Data Sekolah</div>
+<div class="menu-desc">
+Profil lengkap sekolah dan data identitas satuan pendidikan.
+</div>
+</a>
+
+<a href="https://sugeng1104.github.io/apase-web/ptk-panditan1.html" class="menu-card">
+<div class="menu-icon">
+<img src="assets/img/gbr3.png">
+</div>
+<div class="menu-title">Data Guru & Tendik</div>
+<div class="menu-desc">
+Daftar lengkap guru dan tenaga kependidikan SDN Panditan I.
+</div>
+</a>
+
+<a href="https://sugeng1104.github.io/apase-web/pages/pd-panditan1.html" class="menu-card">
+<div class="menu-icon">
+<img src="assets/img/gbr4.png">
+</div>
+<div class="menu-title">Data Statistik Siswa</div>
+<div class="menu-desc">
+Data peserta didik dan statistik siswa secara realtime.
+</div>
+</a>
+
+<a href="pages/absensi.html" class="menu-card">
+<div class="menu-icon">
+<img src="assets/img/gbr5.png">
+</div>
+<div class="menu-title">Absensi Guru & Staf</div>
+<div class="menu-desc">
+Monitoring kehadiran guru dan staf sekolah secara digital.
+</div>
+</a>
+
+<a href="pages/program-sekolah.html" class="menu-card">
+<div class="menu-icon">
+<img src="assets/img/gbr6.png">
+</div>
+<div class="menu-title">Program Sekolah</div>
+<div class="menu-desc">
+Dokumen program kerja dan perencanaan sekolah.
+</div>
+</a>
+
+<a href="pages/pb-panditan1.html" class="menu-card">
+<div class="menu-icon">
+<img src="assets/img/gbr7.png">
+</div>
+<div class="menu-title">Perangkat Pembelajaran</div>
+<div class="menu-desc">
+Administrasi perangkat pembelajaran guru dan kelas.
+</div>
+</a>
+
+<a href="pages/supervisi.html" class="menu-card">
+<div class="menu-icon">
+<img src="assets/img/gbr8.png">
+</div>
+<div class="menu-title">Administrasi Supervisi</div>
+<div class="menu-desc">
+Supervisi akademik dan administrasi guru sekolah.
+</div>
+</a>
+
+<a href="pages/e-kinerja.html" class="menu-card">
+<div class="menu-icon">
+<img src="assets/img/gbr9.png">
+</div>
+<div class="menu-title">Data E-Kinerja</div>
+<div class="menu-desc">
+Pengelolaan data e-kinerja guru dan tenaga kependidikan.
+</div>
+</a>
+
+</div>
+
+</section>
+
+<!-- INFO -->
+<section class="info-section">
+
+<div class="info-grid">
+
+<div class="info-card">
+<h3>9+</h3>
+<p>Menu Administrasi Sekolah</p>
+</div>
+
+<div class="info-card">
+<h3>100%</h3>
+<p>Berbasis Cloud & Google Spreadsheet</p>
+</div>
+
+<div class="info-card">
+<h3>24 Jam</h3>
+<p>Akses Sistem Online Dimanapun</p>
+</div>
+
+<div class="info-card">
+<h3>2026</h3>
+<p>APASE WEB SDN Panditan I</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+
+APASE WEB © 2026
+<br>
+SDN PANDITAN I
+
+</div>
+
+<script>
+
+// LOGIN
+const loginUser =
+localStorage.getItem("loginUser");
+
+const loginNama =
+localStorage.getItem("namaPengguna");
+
+if(!loginUser){
+window.location.href =
+"index.html";
+}
+
+// TAMPIL USER
+
+document.getElementById(
+"loginName"
+).innerText =
+loginNama || loginUser;
+
+// LOGOUT
+function logout(){
+
+localStorage.removeItem(
+"loginUser"
+);
+
+localStorage.removeItem(
+"namaPengguna"
+);
+
+localStorage.removeItem(
+"userRole"
+);
+
+window.location.href =
+"index.html";
+
+}
+
+</script>
+
+</body>
+</html>
+
+
